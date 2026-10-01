@@ -1,36 +1,33 @@
 # Sistema de inventario
 
-Aplicación de escritorio desarrollada con C# y .NET para llevar el control de productos y existencias de un negocio.
+Sistema de escritorio desarrollado con C# y .NET para facilitar el control y seguimiento del inventario de un negocio.
 
-La idea del proyecto es tener una forma sencilla de registrar productos, consultar el inventario y controlar las entradas y salidas de mercancía sin tener que hacer el conteo manualmente cada vez.
+El proyecto nace de una idea sencilla: evitar que el control de mercancía dependa de conteos manuales cada vez que se necesita conocer cuántos productos hay disponibles.
 
-## ¿Qué quiero hacer?
+La aplicación centraliza el registro de productos, las cantidades disponibles y los movimientos de inventario, permitiendo tener una visión más clara del estado de la mercancía.
 
-El sistema permitirá:
+## Sobre el proyecto
 
-- Registrar productos.
-- Consultar la cantidad disponible.
-- Aumentar o disminuir el stock.
-- Registrar entradas y salidas de productos.
-- Buscar productos mediante código de barras.
-- Consultar los movimientos realizados.
+El proyecto está pensado como un módulo de inventario que pueda formar parte de una solución más grande para la gestión de un negocio.
 
-Una de las funcionalidades que quiero implementar es la lectura de códigos de barras. La idea es que, al escanear un producto, el sistema compruebe si ya está registrado.
+La aplicación permite registrar productos y mantener actualizada su cantidad disponible. Para facilitar este proceso, se implementa la identificación de productos mediante códigos de barras y códigos QR.
 
-Si el producto no existe, permitirá registrarlo.
-
-Si ya existe, se podrá indicar la cantidad que ingresó y esta se sumará al inventario.
-
-Por ejemplo:
+El flujo principal parte de la identificación del producto:
 
 ```text
-Escanear producto
-       ↓
-¿Existe?
-  ↓          ↓
- No         Sí
- ↓           ↓
-Registrar   Mostrar producto
-producto    y stock actual
-              ↓
-        Agregar cantidad
+Escanear código
+      ↓
+Buscar producto
+      ↓
+¿El producto existe?
+   ↓              ↓
+  No              Sí
+   ↓              ↓
+Registrar       Mostrar información
+producto        y stock actual
+   ↓              ↓
+   └───────┬──────┘
+           ↓
+    Actualizar stock
+           ↓
+ Registrar movimiento
